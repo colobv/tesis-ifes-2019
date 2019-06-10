@@ -2,9 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <UserSecretsId>aspnet-tesis_ifes_2019-D890D9AD-CDA0-48BE-B2BC-8850930DB0D7</UserSecretsId>
+    <UserSecretsId>aspnet-BarApp-E314AA46-3DD8-4B3D-BFE5-F79FD7658A83</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <RootNamespace>tesis_ifes_2019</RootNamespace>
   </PropertyGroup>
 
 

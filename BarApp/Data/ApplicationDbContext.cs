@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace tesis_ifes_2019.Data
+namespace BarApp.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

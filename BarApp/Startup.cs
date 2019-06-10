@@ -10,11 +10,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using tesis_ifes_2019.Data;
+using BarApp.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace tesis_ifes_2019
+namespace BarApp
 {
     public class Startup
     {

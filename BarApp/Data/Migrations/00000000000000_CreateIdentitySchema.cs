@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace tesis_ifes_2019.Data.Migrations
+namespace BarApp.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using tesis_ifes_2019.Models;
+using BarApp.Models;
 
-namespace tesis_ifes_2019.Controllers
+namespace BarApp.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace tesis_ifes_2019.Models
+namespace BarApp.Models
 {
     public class ErrorViewModel
     {

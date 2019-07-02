@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -23,5 +23,6 @@ namespace BarApp.Data
 
         public DbSet<BarApp.Models.Producto> Producto { get; set; }
         public DbSet<BarApp.Models.Categoria> Categoria { get; set; }
+        public DbSet<BarApp.Models.Pedido> Pedido { get; set; }
     }
 }

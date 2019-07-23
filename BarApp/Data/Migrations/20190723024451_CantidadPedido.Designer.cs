@@ -3,14 +3,16 @@ using System;
 using BarApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BarApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190723024451_CantidadPedido")]
+    partial class CantidadPedido
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -264,7 +266,7 @@ namespace BarApp.Data.Migrations
             modelBuilder.Entity("BarApp.Models.PedidoItem", b =>
                 {
                     b.HasOne("BarApp.Models.Pedido", "Pedido")
-                        .WithMany("Productos")
+                        .WithMany("PedidoItem")
                         .HasForeignKey("PedidoId")
                         .OnDelete(DeleteBehavior.Cascade);
 

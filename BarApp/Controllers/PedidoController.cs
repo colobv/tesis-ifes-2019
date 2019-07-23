@@ -34,6 +34,8 @@ namespace BarApp.Controllers
             }
 
             var pedido = await _context.Pedido
+                .Include(p => p.Items)
+                .ThenInclude(i => i.Producto)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (pedido == null)
             {
@@ -55,12 +57,18 @@ namespace BarApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Cliente,Comentario,Estado")] Pedido pedido)
+        public async Task<IActionResult> Create([Bind("Id,Cliente,Comentario,Estado,Productos")] Pedido pedido)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(pedido);
                 await _context.SaveChangesAsync();
+
+                foreach (var i in pedido.Productos) {
+                    pedido.Items.Add(new PedidoItem() { PedidoId = pedido.Id, ProductoId = i });
+                }
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             return View(pedido);

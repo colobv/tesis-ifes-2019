@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using BarApp.Data;
 using BarApp.Models;
 
@@ -13,10 +14,12 @@ namespace BarApp.Controllers
     public class PedidoController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<Usuario> _userManager;
 
-        public PedidoController(ApplicationDbContext context)
+        public PedidoController(ApplicationDbContext context, UserManager<Usuario> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Pedido
@@ -46,9 +49,11 @@ namespace BarApp.Controllers
         }
 
         // GET: Pedido/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewBag.productos = new MultiSelectList(_context.Producto, "Id", "Nombre");
+            var user = await _userManager.GetUserAsync(User);
+            ViewBag.Productos = new MultiSelectList(_context.Producto, "Id", "Nombre");
+            ViewData["EmpleadoId"] = new SelectList(_context.Usuario, "Id", "UserName", user.Id);
             return View();
         }
 

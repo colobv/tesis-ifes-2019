@@ -16,6 +16,7 @@ namespace BarApp.Models
     {
         public Pedido() {
             Items = new List<PedidoItem>();
+            Empleado = new Usuario();
         }
         
         public int Id { get; set; }
@@ -25,7 +26,10 @@ namespace BarApp.Models
 
         public string Comentario { get; set; }
 
-        public IdentityUser Empleado { get; set; }
+        public Usuario Empleado { get; set; }
+        
+        [Display(Name = "Empleado")]
+        public string EmpleadoId { get; set; }
 
         [EnumDataType(typeof(PedidoEstado))]
         public PedidoEstado Estado { get; set; }

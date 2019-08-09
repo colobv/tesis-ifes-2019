@@ -25,7 +25,8 @@ namespace BarApp.Controllers
         // GET: Pedido
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Pedido.ToListAsync());
+            var pedidos = await _context.Pedido.Include(p => p.Empleado).ToListAsync();
+            return View(pedidos);
         }
 
         // GET: Pedido/Details/5
@@ -37,8 +38,9 @@ namespace BarApp.Controllers
             }
 
             var pedido = await _context.Pedido
+                .Include(p => p.Empleado)
                 .Include(p => p.Items)
-                .ThenInclude(i => i.Producto)
+                    .ThenInclude(i => i.Producto)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (pedido == null)
             {
@@ -53,7 +55,7 @@ namespace BarApp.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
             ViewBag.Productos = new MultiSelectList(_context.Producto, "Id", "Nombre");
-            ViewData["EmpleadoId"] = new SelectList(_context.Usuario, "Id", "UserName", user.Id);
+            ViewBag.EmpleadoId = new SelectList(_context.Usuario, "Id", "UserName", user.Id);
             return View();
         }
 
@@ -62,7 +64,7 @@ namespace BarApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Cliente,Comentario,Estado,Productos")] Pedido pedido)
+        public async Task<IActionResult> Create([Bind("Id,Cliente,Comentario,Estado,Productos,EmpleadoId")] Pedido pedido)
         {
             if (ModelState.IsValid)
             {
@@ -70,6 +72,9 @@ namespace BarApp.Controllers
                 await _context.SaveChangesAsync();
 
                 foreach (var i in pedido.Productos) {
+                    // var producto = await _context.Producto.FindAsync(i);
+                    // producto.stock -= 1;
+                    // await producto.SaveChangesAsync()
                     pedido.Items.Add(new PedidoItem() { PedidoId = pedido.Id, ProductoId = i });
                 }
                 await _context.SaveChangesAsync();

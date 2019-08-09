@@ -16,7 +16,6 @@ namespace BarApp.Models
     {
         public Pedido() {
             Items = new List<PedidoItem>();
-            Empleado = new Usuario();
         }
         
         public int Id { get; set; }

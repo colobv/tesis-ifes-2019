@@ -7,7 +7,7 @@ using BarApp.Models;
 
 namespace BarApp.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<Usuario>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -24,5 +24,6 @@ namespace BarApp.Data
         public DbSet<BarApp.Models.Producto> Producto { get; set; }
         public DbSet<BarApp.Models.Categoria> Categoria { get; set; }
         public DbSet<BarApp.Models.Pedido> Pedido { get; set; }
+        public DbSet<BarApp.Models.Usuario> Usuario { get; set; }
     }
 }

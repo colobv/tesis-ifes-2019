@@ -82,5 +82,11 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
+
+    <script>
+    $.validator.methods.number = function (value, element) {
+        return !isNaN(parseFloat(value));
+    }
+    </script>
 </body>
 </html>

@@ -22,6 +22,9 @@
                 @Html.DisplayNameFor(model => model.Precio)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Categoria)
             </th>
             <th></th>
@@ -34,13 +37,13 @@
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Costo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Categoria.Nombre)

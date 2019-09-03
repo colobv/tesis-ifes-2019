@@ -5,6 +5,10 @@ namespace BarApp.Models
 {
     public class Producto
     {
+        public Producto () {
+            Stock = 0;
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -18,6 +22,9 @@ namespace BarApp.Models
         [DataType(DataType.Currency)]
         [Required]
         public decimal Precio { get; set; }
+        
+        [Required]
+        public int Stock { get; set; }
 
         [Display(Name = "Categoria")]
         public int CategoriaId { get; set; }

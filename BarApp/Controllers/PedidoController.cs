@@ -66,15 +66,22 @@ namespace BarApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Cliente,Comentario,Estado,Productos,EmpleadoId")] Pedido pedido)
         {
+            var user = await _userManager.GetUserAsync(User);
             if (ModelState.IsValid)
             {
                 _context.Add(pedido);
-                await _context.SaveChangesAsync();
+                //await _context.SaveChangesAsync();
 
                 foreach (var i in pedido.Productos) {
-                    // var producto = await _context.Producto.FindAsync(i);
-                    // producto.stock -= 1;
-                    // await producto.SaveChangesAsync()
+                    var producto = await _context.Producto.FindAsync(i);
+                    if (producto.Stock == 0) {
+                        ViewBag.Productos = new MultiSelectList(_context.Producto, "Id", "Nombre");
+                        ViewBag.EmpleadoId = new SelectList(_context.Usuario, "Id", "UserName", user.Id);
+                        ViewBag.Error = "No hay stock para " + producto.Nombre;
+                        return View(pedido);
+                    }
+                    producto.Stock -= 1;
+                    //await _context.SaveChangesAsync();
                     pedido.Items.Add(new PedidoItem() { PedidoId = pedido.Id, ProductoId = i });
                 }
                 await _context.SaveChangesAsync();

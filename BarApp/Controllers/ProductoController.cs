@@ -57,7 +57,7 @@ namespace BarApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,Costo,Precio,CategoriaId")] Producto producto)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,Costo,Precio,Stock,CategoriaId")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace BarApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Costo,Precio,CategoriaId")] Producto producto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Costo,Precio,Stock,CategoriaId")] Producto producto)
         {
             if (id != producto.Id)
             {

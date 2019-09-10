@@ -71,6 +71,7 @@ namespace BarApp.Controllers
             {
                 _context.Add(pedido);
                 //await _context.SaveChangesAsync();
+                var precioTotal = new decimal(0);
 
                 foreach (var i in pedido.Productos) {
                     var producto = await _context.Producto.FindAsync(i);
@@ -81,9 +82,13 @@ namespace BarApp.Controllers
                         return View(pedido);
                     }
                     producto.Stock -= 1;
+                    precioTotal += producto.Precio;
                     //await _context.SaveChangesAsync();
                     pedido.Items.Add(new PedidoItem() { PedidoId = pedido.Id, ProductoId = i });
                 }
+
+                pedido.PrecioTotal = precioTotal;
+                
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));

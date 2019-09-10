@@ -47,11 +47,16 @@
             <ul>
             @foreach (var item in Model.Items)
             {
-                <li>@item.Producto.Nombre</li>
+                <li>@item.Producto.Nombre (@Html.DisplayFor(model => item.Producto.Precio))</li>
             }
             </ul>
         </dd>
     </dl>
+    <hr>
+    <p>
+        <strong>Total: </strong>
+        <span>@Html.DisplayFor(model => model.PrecioTotal)</span>
+    </p>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |

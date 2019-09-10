@@ -39,6 +39,7 @@ namespace BarApp.Models
 
         public List<PedidoItem> Items { get; set; }
 
+        [DisplayFormat(DataFormatString = "${0:0.##}")]
         [DataType(DataType.Currency)]
         public decimal PrecioTotal { get; set; }
 

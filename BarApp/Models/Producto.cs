@@ -16,9 +16,11 @@ namespace BarApp.Models
 
         public string Descripcion { get; set; }
 
+        [DisplayFormat(DataFormatString = "${0:0.##}")] 
         [DataType(DataType.Currency)]
         public decimal Costo { get; set; }
 
+        [DisplayFormat(DataFormatString = "${0:0.##}")] 
         [DataType(DataType.Currency)]
         [Required]
         public decimal Precio { get; set; }

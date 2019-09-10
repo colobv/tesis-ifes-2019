@@ -18,6 +18,7 @@ namespace BarApp.Models
             Items = new List<PedidoItem>();
             FechaCreacion = DateTime.Now;
             PrecioTotal = 0;
+            Mesa = 0;
         }
         
         public int Id { get; set; }
@@ -42,6 +43,8 @@ namespace BarApp.Models
         [DisplayFormat(DataFormatString = "${0:0.##}")]
         [DataType(DataType.Currency)]
         public decimal PrecioTotal { get; set; }
+
+        public int Mesa { get; set; }
 
         [NotMapped]
         public int[] Productos { get; set; }

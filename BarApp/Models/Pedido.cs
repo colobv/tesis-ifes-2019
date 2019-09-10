@@ -16,9 +16,13 @@ namespace BarApp.Models
     {
         public Pedido() {
             Items = new List<PedidoItem>();
+            FechaCreacion = DateTime.Now;
+            PrecioTotal = 0;
         }
         
         public int Id { get; set; }
+
+        public DateTime FechaCreacion { get; set; }
 
         [Required]
         public string Cliente { get; set; }
@@ -34,6 +38,9 @@ namespace BarApp.Models
         public PedidoEstado Estado { get; set; }
 
         public List<PedidoItem> Items { get; set; }
+
+        [DataType(DataType.Currency)]
+        public decimal PrecioTotal { get; set; }
 
         [NotMapped]
         public int[] Productos { get; set; }

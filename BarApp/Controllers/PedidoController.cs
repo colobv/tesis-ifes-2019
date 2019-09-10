@@ -64,8 +64,8 @@ namespace BarApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Cliente,Comentario,Estado,Productos,EmpleadoId")] Pedido pedido)
-        {
+        public async Task<IActionResult> Create([Bind("Id,Cliente,FechaCreacion,Comentario,Estado,Productos,EmpleadoId")] Pedido pedido)
+        {     
             var user = await _userManager.GetUserAsync(User);
             if (ModelState.IsValid)
             {

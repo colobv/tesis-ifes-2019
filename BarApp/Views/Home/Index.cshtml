@@ -21,8 +21,8 @@
                 @pedido.Cliente <br>
                 @pedido.Comentario
             </p>
-            <a asp-action="Edit" asp-route-id="@pedido.Id" class="btn btn-secondary">Editar</a>
-            <a href="#" class="btn btn-danger">Cerrar</a>
+            <a class="btn btn-secondary" asp-controller="Pedido" asp-action="Edit" asp-route-id="@pedido.Id">Editar</a>
+            <a class="btn btn-danger" asp-controller="Pedido" asp-action="Cerrar" asp-route-id="@pedido.Id">Cerrar</a>
         </div>
     </div>
     }

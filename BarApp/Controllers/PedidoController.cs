@@ -109,6 +109,8 @@ namespace BarApp.Controllers
             {
                 return NotFound();
             }
+            var user = await _userManager.GetUserAsync(User);
+            ViewBag.EmpleadoId = new SelectList(_context.Usuario, "Id", "UserName", user.Id);
             return View(pedido);
         }
 
@@ -117,7 +119,7 @@ namespace BarApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Cliente,Comentario,Estado")] Pedido pedido)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Cliente,Comentario,Estado,EmpleadoId")] Pedido pedido)
         {
             if (id != pedido.Id)
             {
@@ -174,6 +176,15 @@ namespace BarApp.Controllers
             _context.Pedido.Remove(pedido);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Pedido/Cerrar/5
+        public async Task<IActionResult> Cerrar(int id)
+        {
+            var pedido = await _context.Pedido.FindAsync(id);
+            pedido.Estado = PedidoEstado.Finalizado;
+            await _context.SaveChangesAsync();
+            return Redirect("/");
         }
 
         private bool PedidoExists(int id)

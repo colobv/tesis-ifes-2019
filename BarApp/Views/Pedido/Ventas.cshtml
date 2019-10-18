@@ -6,6 +6,8 @@
 
 <h1>Ventas</h1>
 
+<div id="chart"></div>
+
 <table class="table">
     <thead>
         <tr>
@@ -20,6 +22,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Empleado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioTotal)
             </th>
             <th></th>
         </tr>
@@ -39,6 +44,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Empleado.UserName)
             </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.PrecioTotal)
+            </th>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
@@ -48,3 +56,45 @@
 }
     </tbody>
 </table>
+
+<script>
+var options = {
+    chart: {
+        height: 350,
+        type: 'line',
+        zoom: {
+            enabled: false
+        }
+    },
+    title: {
+        text: 'Ventas por dia',
+        align: 'left'
+    },
+    series: [{
+        name: "Total",
+        data: [
+@foreach (var item in Model) {
+    <text>
+        {
+            x: '@item.FechaCreacion.ToString("yyyy-MM-dd")',
+            y: Math.ceil(@item.PrecioTotal.ToString("0"))
+        },
+    </text>
+}
+        ]
+    }],
+    dataLabels: {
+        enabled: false
+    },
+    xaxis: {
+        type: 'datetime'
+    }
+}
+
+var chart = new ApexCharts(
+    document.querySelector("#chart"),
+    options
+);
+
+chart.render();
+</script>

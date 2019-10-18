@@ -30,7 +30,7 @@ namespace BarApp.Controllers
         }
 
         // GET: Pedido/Completados
-        public async Task<IActionResult> Finalizados()
+        public async Task<IActionResult> Ventas()
         {
             var pedidos = await _context.Pedido
                 .Include(p => p.Empleado)
@@ -129,7 +129,7 @@ namespace BarApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Cliente,Comentario,Estado,EmpleadoId")] Pedido pedido)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FechaCreacion,Cliente,Comentario,Estado,EmpleadoId")] Pedido pedido)
         {
             if (id != pedido.Id)
             {

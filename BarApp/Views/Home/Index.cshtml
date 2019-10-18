@@ -6,12 +6,16 @@
 
 <div class="text-center">
     <h1 class="display-4">Mesas</h1>
-    <p>Control de mesas</p>
+    <p>
+        <a class="btn btn btn-primary" asp-controller="Pedido" asp-action="Create">
+            Nuevo pedido
+        </a>
+    </p>
     @foreach (var pedido in Model) {
     <div class="card d-inline-block m-2" style="width: 18rem">
         <div class="card-body">
             <h5 class="card-title">
-                Mesa @pedido.Mesa
+                Mesa #@pedido.Mesa
                 <span class="badge badge-success">@Html.DisplayFor(model => pedido.PrecioTotal)</span>
             </h5>
             <h6 class="card-subtitle mb-2 text-muted">
@@ -21,8 +25,8 @@
                 @pedido.Cliente <br>
                 @pedido.Comentario
             </p>
-            <a class="btn btn-secondary" asp-controller="Pedido" asp-action="Edit" asp-route-id="@pedido.Id">Editar</a>
-            <a class="btn btn-danger" asp-controller="Pedido" asp-action="Cerrar" asp-route-id="@pedido.Id">Cerrar</a>
+            <a class="btn btn-sm btn-secondary" asp-controller="Pedido" asp-action="Edit" asp-route-id="@pedido.Id">Editar</a>
+            <a class="btn btn-sm btn-danger" asp-controller="Pedido" asp-action="Cerrar" asp-route-id="@pedido.Id">Cerrar</a>
         </div>
     </div>
     }

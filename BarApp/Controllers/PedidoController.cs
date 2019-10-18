@@ -29,6 +29,16 @@ namespace BarApp.Controllers
             return View(pedidos);
         }
 
+        // GET: Pedido/Completados
+        public async Task<IActionResult> Finalizados()
+        {
+            var pedidos = await _context.Pedido
+                .Include(p => p.Empleado)
+                .Where(p => p.Estado == PedidoEstado.Finalizado)
+                .ToListAsync();
+            return View(pedidos);
+        }
+
         // GET: Pedido/Details/5
         public async Task<IActionResult> Details(int? id)
         {

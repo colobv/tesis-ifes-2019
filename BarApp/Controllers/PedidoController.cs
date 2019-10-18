@@ -129,7 +129,7 @@ namespace BarApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FechaCreacion,Cliente,Comentario,Estado,EmpleadoId")] Pedido pedido)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FechaCreacion,Cliente,Comentario,PrecioTotal,Estado,EmpleadoId")] Pedido pedido)
         {
             if (id != pedido.Id)
             {

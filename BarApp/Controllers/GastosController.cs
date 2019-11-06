@@ -48,7 +48,7 @@ namespace BarApp.Controllers
         // GET: Gastos/Create
         public IActionResult Create()
         {
-            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Id");
+            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace BarApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Id", gasto.CategoriaId);
+            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre", gasto.CategoriaId);
             return View(gasto);
         }
 

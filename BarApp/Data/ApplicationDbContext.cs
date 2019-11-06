@@ -25,5 +25,6 @@ namespace BarApp.Data
         public DbSet<BarApp.Models.Categoria> Categoria { get; set; }
         public DbSet<BarApp.Models.Pedido> Pedido { get; set; }
         public DbSet<BarApp.Models.Usuario> Usuario { get; set; }
+        public DbSet<BarApp.Models.Gasto> Gasto { get; set; }
     }
 }

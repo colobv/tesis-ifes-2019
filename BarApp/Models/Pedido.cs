@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace BarApp.Models
 {
     public enum PedidoEstado {
-        Pendiente, Entregado, Finalizado
+        Pendiente, Finalizado
     }
     
     public class Pedido

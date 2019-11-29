@@ -58,6 +58,38 @@
 </table>
 
 <script>
+// Data de la base de datos
+var data = [
+@foreach (var item in Model) {
+<text>
+    {
+        x: '@item.FechaCreacion.ToString("yyyy-MM-dd")',
+        y: Math.ceil(@item.PrecioTotal.ToString("0"))
+    },
+</text>
+}
+]
+
+console.log('data: ', data)
+
+// Agrupa por fecha y suma
+var grupos = {}
+data.forEach(item => {
+    grupos[item.x] = (grupos[item.x] || 0) + item.y
+})
+
+console.log('grupos: ', grupos)
+
+// Transformo los grupos en {x: fecha, y: precioTotal}
+var dataTransformado = Object.keys(grupos).map(fecha => {
+	return {
+        x: fecha, 
+        y: grupos[fecha]
+    }
+})
+
+console.log('dataTransformado', dataTransformado)
+
 var options = {
     chart: {
         height: 350,
@@ -72,16 +104,7 @@ var options = {
     },
     series: [{
         name: "Total",
-        data: [
-@foreach (var item in Model) {
-    <text>
-        {
-            x: '@item.FechaCreacion.ToString("yyyy-MM-dd")',
-            y: Math.ceil(@item.PrecioTotal.ToString("0"))
-        },
-    </text>
-}
-        ]
+        data: dataTransformado
     }],
     dataLabels: {
         enabled: false
@@ -91,10 +114,7 @@ var options = {
     }
 }
 
-var chart = new ApexCharts(
-    document.querySelector("#chart"),
-    options
-);
+var chart = new ApexCharts(document.querySelector("#chart"), options);
 
 chart.render();
 </script>

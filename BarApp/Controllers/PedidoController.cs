@@ -35,6 +35,7 @@ namespace BarApp.Controllers
             var pedidos = await _context.Pedido
                 .Include(p => p.Empleado)
                 .Where(p => p.Estado == PedidoEstado.Finalizado)
+                .OrderByDescending(p => p.FechaCreacion)
                 .ToListAsync();
             return View(pedidos);
         }

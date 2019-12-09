@@ -102,7 +102,7 @@ namespace BarApp.Controllers
                 
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
+                return Redirect("/");
             }
             return View(pedido);
         }

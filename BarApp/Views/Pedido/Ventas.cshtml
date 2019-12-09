@@ -63,7 +63,7 @@ var data = [
 @foreach (var item in Model) {
 <text>
     {
-        x: '@item.FechaCreacion.ToString("yyyy-MM-dd")',
+        x: '@item.FechaCreacion.ToString("MM-dd-yyyy")',
         y: Math.ceil(@item.PrecioTotal.ToString("0"))
     },
 </text>

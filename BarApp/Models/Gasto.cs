@@ -14,7 +14,7 @@ namespace BarApp.Models
 
     public class CategoriaGasto {
         public int Id { get; set; }
-        
+
         [Required]
         public string Nombre { get; set; }
     }
@@ -34,6 +34,12 @@ namespace BarApp.Models
         public int CategoriaGastoId { get; set; }
 
         public CategoriaGasto CategoriaGasto { get; set; }
+
+        [Required]
+        [Display(Name = "Proveedor")]
+        public int ProveedorId { get; set; }
+        
+        public Proveedor Proveedor { get; set; }
 
         [EnumDataType(typeof(MetodoPago))]
         public MetodoPago MetodoPago { get; set; }

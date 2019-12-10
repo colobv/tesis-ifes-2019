@@ -12,6 +12,13 @@ namespace BarApp.Models
         Efectivo, Debito, Credito, MercadoPago
     }
 
+    public class CategoriaGasto {
+        public int Id { get; set; }
+        
+        [Required]
+        public string Nombre { get; set; }
+    }
+
     public class Gasto
     {
         public Gasto() {
@@ -21,6 +28,12 @@ namespace BarApp.Models
         public int Id { get; set; }
 
         public DateTime FechaCreacion { get; set; }
+
+        [Required]
+        [Display(Name = "Categoria")]
+        public int CategoriaGastoId { get; set; }
+
+        public CategoriaGasto CategoriaGasto { get; set; }
 
         [EnumDataType(typeof(MetodoPago))]
         public MetodoPago MetodoPago { get; set; }

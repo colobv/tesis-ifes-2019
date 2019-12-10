@@ -3,14 +3,16 @@ using System;
 using BarApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BarApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191210004046_BorroCamposGasto")]
+    partial class BorroCamposGasto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,25 +31,10 @@ namespace BarApp.Data.Migrations
                     b.ToTable("Categoria");
                 });
 
-            modelBuilder.Entity("BarApp.Models.CategoriaGasto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CategoriaGasto");
-                });
-
             modelBuilder.Entity("BarApp.Models.Gasto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CategoriaGastoId");
 
                     b.Property<string>("Comentario");
 
@@ -58,8 +45,6 @@ namespace BarApp.Data.Migrations
                     b.Property<int>("MetodoPago");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoriaGastoId");
 
                     b.ToTable("Gasto");
                 });
@@ -295,14 +280,6 @@ namespace BarApp.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("BarApp.Models.Gasto", b =>
-                {
-                    b.HasOne("BarApp.Models.CategoriaGasto", "CategoriaGasto")
-                        .WithMany()
-                        .HasForeignKey("CategoriaGastoId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("BarApp.Models.Pedido", b =>

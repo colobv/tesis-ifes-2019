@@ -22,14 +22,6 @@ namespace BarApp.Models
 
         public DateTime FechaCreacion { get; set; }
 
-        [Required]
-        public string Proveedor { get; set; }
-
-        [Display(Name = "Categoria")]
-        public int CategoriaId { get; set; }
-        
-        public Categoria Categoria { get; set; }
-
         [EnumDataType(typeof(MetodoPago))]
         public MetodoPago MetodoPago { get; set; }
 

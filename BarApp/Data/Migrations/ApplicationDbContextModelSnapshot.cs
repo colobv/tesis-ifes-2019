@@ -34,8 +34,6 @@ namespace BarApp.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CategoriaId");
-
                     b.Property<string>("Comentario");
 
                     b.Property<DateTime>("FechaCreacion");
@@ -44,12 +42,7 @@ namespace BarApp.Data.Migrations
 
                     b.Property<int>("MetodoPago");
 
-                    b.Property<string>("Proveedor")
-                        .IsRequired();
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoriaId");
 
                     b.ToTable("Gasto");
                 });
@@ -285,14 +278,6 @@ namespace BarApp.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("BarApp.Models.Gasto", b =>
-                {
-                    b.HasOne("BarApp.Models.Categoria", "Categoria")
-                        .WithMany()
-                        .HasForeignKey("CategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("BarApp.Models.Pedido", b =>

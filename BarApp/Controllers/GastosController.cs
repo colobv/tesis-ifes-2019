@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using BarApp.Data;
 using BarApp.Models;
 
 namespace BarApp.Controllers
 {
+    [Authorize]
     public class GastosController : Controller
     {
         private readonly ApplicationDbContext _context;

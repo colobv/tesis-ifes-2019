@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using BarApp.Data;
 using BarApp.Models;
 
 namespace BarApp.Controllers
 {
+    [Authorize]
     public class PedidoController : Controller
     {
         private readonly ApplicationDbContext _context;

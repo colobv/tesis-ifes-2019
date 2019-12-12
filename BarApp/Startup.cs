@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BarApp.Data;
 using BarApp.Models;
-using BarApp.Middlewares;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
@@ -68,8 +67,6 @@ namespace BarApp
             //app.UseCookiePolicy();
 
             app.UseAuthentication();
-
-            app.UseMiddleware<AuthenticationMiddleware>();
 
             app.UseMvc(routes =>
             {

@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using BarApp.Data;
 using BarApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BarApp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
